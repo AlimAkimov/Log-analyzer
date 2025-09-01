@@ -1,14 +1,14 @@
-package org.example;
+package org.example.Analyzer;
+
+import lombok.AllArgsConstructor;
+import org.example.Model.VisitLog;
 
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
+@AllArgsConstructor
 public class WebLogAnalyzerWithoutStreamAPIImpl implements WebLogAnalyzer {
-    private List<VisitLog> logs;
-
-    public WebLogAnalyzerWithoutStreamAPIImpl(List<VisitLog> logs) {
-        this.logs = logs;
-    }
+    private final List<VisitLog> logs;
 
     @Override
     public Map<String, Long> getPageViewsTop5() {
