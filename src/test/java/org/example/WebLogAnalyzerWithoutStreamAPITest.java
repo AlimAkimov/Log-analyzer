@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class WebLogAnalyzerWithoutStreamAPITest {
     private List<VisitLog> logs;
-    private WebLogAnalyzerWithoutStreamAPI logAnalyzer;
+    private WebLogAnalyzer logAnalyzer;
 
     @BeforeEach
     void setUp() {
@@ -26,7 +25,7 @@ public class WebLogAnalyzerWithoutStreamAPITest {
                 new VisitLog("user_4", "/product/1", LocalDateTime.of(2025, 8, 26, 11, 12), 130)
 
         );
-        logAnalyzer = new WebLogAnalyzerWithoutStreamAPI(logs);
+        logAnalyzer = new WebLogAnalyzerWithoutStreamAPIImpl(logs);
     }
 
     @Test
@@ -41,7 +40,7 @@ public class WebLogAnalyzerWithoutStreamAPITest {
 
     @Test
     void testGetPageViewsTop5EmptyLogs() {
-        WebLogAnalyzer emptyAnalyzer = new WebLogAnalyzer(new ArrayList<>());
+        WebLogAnalyzerImpl emptyAnalyzer = new WebLogAnalyzerImpl(new ArrayList<>());
         Map<String, Long> result = emptyAnalyzer.getPageViewsTop5();
         assertTrue(result.isEmpty());
     }
@@ -103,7 +102,7 @@ public class WebLogAnalyzerWithoutStreamAPITest {
 
     @Test
     void testGetActiveUserSessionsEmptyLogs() {
-        WebLogAnalyzer emptyAnalyzer = new WebLogAnalyzer(new ArrayList<>());
+        WebLogAnalyzerImpl emptyAnalyzer = new WebLogAnalyzerImpl(new ArrayList<>());
         Map<String, List<List<VisitLog>>> sessions = emptyAnalyzer.getActiveUserSessions(30);
         assertTrue(sessions.isEmpty());
     }
@@ -131,7 +130,7 @@ public class WebLogAnalyzerWithoutStreamAPITest {
 
     @Test
     void testGetAbandonedCartsEmptyLogs() {
-        WebLogAnalyzer emptyAnalyzer = new WebLogAnalyzer(new ArrayList<>());
+        WebLogAnalyzerImpl emptyAnalyzer = new WebLogAnalyzerImpl(new ArrayList<>());
         Set<String> abandonedCarts = emptyAnalyzer.getAbandonedCarts();
         assertTrue(abandonedCarts.isEmpty());
     }

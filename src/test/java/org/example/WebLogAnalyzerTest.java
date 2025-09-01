@@ -28,7 +28,7 @@ public class WebLogAnalyzerTest {
                 new VisitLog("user_4", "/product/1", LocalDateTime.of(2025, 8, 26, 11, 12), 130)
 
         );
-        logAnalyzer = new WebLogAnalyzer(logs);
+        logAnalyzer = new WebLogAnalyzerImpl(logs);
     }
 
     @Test
@@ -43,7 +43,7 @@ public class WebLogAnalyzerTest {
 
     @Test
     void testGetPageViewsTop5EmptyLogs() {
-        WebLogAnalyzer emptyAnalyzer = new WebLogAnalyzer(new ArrayList<>());
+        WebLogAnalyzerImpl emptyAnalyzer = new WebLogAnalyzerImpl(new ArrayList<>());
         Map<String, Long> result = emptyAnalyzer.getPageViewsTop5();
         assertTrue(result.isEmpty());
     }
@@ -105,7 +105,7 @@ public class WebLogAnalyzerTest {
 
     @Test
     void testGetActiveUserSessionsEmptyLogs() {
-        WebLogAnalyzer emptyAnalyzer = new WebLogAnalyzer(new ArrayList<>());
+        WebLogAnalyzerImpl emptyAnalyzer = new WebLogAnalyzerImpl(new ArrayList<>());
         Map<String, List<List<VisitLog>>> sessions = emptyAnalyzer.getActiveUserSessions(30);
         assertTrue(sessions.isEmpty());
     }
@@ -133,7 +133,7 @@ public class WebLogAnalyzerTest {
 
     @Test
     void testGetAbandonedCartsEmptyLogs() {
-        WebLogAnalyzer emptyAnalyzer = new WebLogAnalyzer(new ArrayList<>());
+        WebLogAnalyzerImpl emptyAnalyzer = new WebLogAnalyzerImpl(new ArrayList<>());
         Set<String> abandonedCarts = emptyAnalyzer.getAbandonedCarts();
         assertTrue(abandonedCarts.isEmpty());
     }
