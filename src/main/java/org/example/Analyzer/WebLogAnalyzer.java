@@ -1,8 +1,8 @@
-package org.example;
+package org.example.Analyzer;
 
-import java.time.temporal.ChronoUnit;
+import org.example.Model.VisitLog;
+
 import java.util.*;
-import java.util.stream.Collectors;
 
 public interface WebLogAnalyzer {
     Map<String, Long> getPageViewsTop5();
