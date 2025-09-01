@@ -8,8 +8,8 @@ public class Benchmark {
     public void benchStreamVsLoops() {
         List<VisitLog> logs = generateLogs(1000000);
 
-        WebLogAnalyzer analyzerStream = new WebLogAnalyzer(logs);
-        WebLogAnalyzerWithoutStreamAPI analyzerLoops = new WebLogAnalyzerWithoutStreamAPI(logs);
+        WebLogAnalyzer analyzerStream = new WebLogAnalyzerImpl(logs);
+        WebLogAnalyzer analyzerLoops = new WebLogAnalyzerWithoutStreamAPIImpl(logs);
 
         // Тест для getPageViewsTop5
         analyzerStream.getPageViewsTop5();

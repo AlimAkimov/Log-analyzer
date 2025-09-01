@@ -3,13 +3,14 @@ package org.example;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class WebLogAnalyzerWithoutStreamAPI {
+public class WebLogAnalyzerWithoutStreamAPIImpl implements WebLogAnalyzer {
     private List<VisitLog> logs;
 
-    public WebLogAnalyzerWithoutStreamAPI(List<VisitLog> logs) {
+    public WebLogAnalyzerWithoutStreamAPIImpl(List<VisitLog> logs) {
         this.logs = logs;
     }
 
+    @Override
     public Map<String, Long> getPageViewsTop5() {
         Map<String, Long> pageCounts = new HashMap<>();
         for (VisitLog log : logs) {
@@ -28,6 +29,7 @@ public class WebLogAnalyzerWithoutStreamAPI {
         return top5Pages;
     }
 
+    @Override
     public Set<String> getUsersOnPage(String page) {
         Set<String> users = new HashSet<>();
         for (VisitLog log : logs) {
@@ -38,6 +40,7 @@ public class WebLogAnalyzerWithoutStreamAPI {
         return users;
     }
 
+    @Override
     public double getAverageTimeOnPage(String page) {
         int totalDuration = 0;
         int count = 0;
@@ -53,6 +56,7 @@ public class WebLogAnalyzerWithoutStreamAPI {
         return (double) totalDuration / count;
     }
 
+    @Override
     public Set<String> getActiveUsers(int minPages) {
         Map<String, Set<String>> userPages = new HashMap<>();
         for (VisitLog log : logs) {
@@ -70,6 +74,7 @@ public class WebLogAnalyzerWithoutStreamAPI {
         return activeUsers;
     }
 
+    @Override
     public List<VisitLog> getLastNVisits(int n) {
         List<VisitLog> sortedLogs = new ArrayList<>(logs);
         sortedLogs.sort(Comparator.comparing(VisitLog::getTimestamp, Comparator.reverseOrder()));
@@ -80,6 +85,7 @@ public class WebLogAnalyzerWithoutStreamAPI {
         return result;
     }
 
+    @Override
     public Map<Integer, Long> getVisitsByHour() {
         Map<Integer, Long> visitsByHours = new TreeMap<>();
         for (VisitLog log : logs) {
@@ -89,6 +95,7 @@ public class WebLogAnalyzerWithoutStreamAPI {
         return visitsByHours;
     }
 
+    @Override
     public Map<String, List<List<VisitLog>>> getActiveUserSessions(long maxBreakMinutes) {
         Map<String, List<VisitLog>> logsByUser = groupLogsByUser();
         Map<String, List<List<VisitLog>>> result = new LinkedHashMap<>();
@@ -154,7 +161,7 @@ public class WebLogAnalyzerWithoutStreamAPI {
         return sessions;
     }
 
-
+    @Override
     public List<String> getUserPath(String userId) {
         List<String> path = new ArrayList<>();
         List<VisitLog> userLogs = new ArrayList<>();
@@ -171,6 +178,7 @@ public class WebLogAnalyzerWithoutStreamAPI {
         return path;
     }
 
+    @Override
     public Set<String> getAbandonedCarts() {
         Set<String> cartUsers = new HashSet<>();
         Set<String> checkoutUsers = new HashSet<>();
