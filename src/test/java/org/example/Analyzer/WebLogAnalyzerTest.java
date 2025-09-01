@@ -54,7 +54,7 @@ public class WebLogAnalyzerTest {
 
     @ParameterizedTest(name = "{0}")
     @MethodSource("analyzers")
-    void testGetPageViewsTop5EmptyLogs(String name, WebLogAnalyzer analyzer) {
+    void testGetPageViewsTop5EmptyLogs(String name) {
         WebLogAnalyzer emptyAnalyzer = createEmptyAnalyzer(name);
         Map<String, Long> result = emptyAnalyzer.getPageViewsTop5();
         assertTrue(result.isEmpty());
@@ -121,7 +121,7 @@ public class WebLogAnalyzerTest {
 
     @ParameterizedTest(name = "{0}")
     @MethodSource("analyzers")
-    void testGetActiveUserSessionsEmptyLogs(String name, WebLogAnalyzer analyzer) {
+    void testGetActiveUserSessionsEmptyLogs(String name) {
         WebLogAnalyzer emptyAnalyzer = createEmptyAnalyzer(name);
         Map<String, List<List<VisitLog>>> sessions = emptyAnalyzer.getActiveUserSessions(30);
         assertTrue(sessions.isEmpty());
@@ -153,7 +153,7 @@ public class WebLogAnalyzerTest {
 
     @ParameterizedTest(name = "{0}")
     @MethodSource("analyzers")
-    void testGetAbandonedCartsEmptyLogs(String name, WebLogAnalyzer analyzer) {
+    void testGetAbandonedCartsEmptyLogs(String name) {
         WebLogAnalyzer emptyAnalyzer = createEmptyAnalyzer(name);
         Set<String> abandonedCarts = emptyAnalyzer.getAbandonedCarts();
         assertTrue(abandonedCarts.isEmpty());
