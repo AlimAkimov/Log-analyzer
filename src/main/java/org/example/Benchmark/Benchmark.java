@@ -1,12 +1,17 @@
-package org.example;
+package org.example.Benchmark;
+
+import org.example.Analyzer.WebLogAnalyzer;
+import org.example.Analyzer.WebLogAnalyzerImpl;
+import org.example.Analyzer.WebLogAnalyzerWithoutStreamAPIImpl;
+import org.example.LogGenerator.GenerateLogs;
+import org.example.Model.VisitLog;
 
 import java.util.List;
 
-import static org.example.VisitLog.generateLogs;
-
 public class Benchmark {
     public void benchStreamVsLoops() {
-        List<VisitLog> logs = generateLogs(1000000);
+        GenerateLogs generateLogs = new GenerateLogs();
+        List<VisitLog> logs = generateLogs.generateLogs(1000000);
 
         WebLogAnalyzer analyzerStream = new WebLogAnalyzerImpl(logs);
         WebLogAnalyzer analyzerLoops = new WebLogAnalyzerWithoutStreamAPIImpl(logs);
