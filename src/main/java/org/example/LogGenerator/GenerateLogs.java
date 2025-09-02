@@ -23,7 +23,7 @@ public class GenerateLogs {
             int duration = random.nextInt(300); // до 5 минут
             logs.add(new VisitLog(userId, page, time, duration));
         }
-        logger.info("Завершена генерация {} записей VisitLog", logs.size());
+        logger.info("Завершена генерация записей VisitLog. Создано {} логов из {}", logs.size(), count);
         return logs;
     }
 }
