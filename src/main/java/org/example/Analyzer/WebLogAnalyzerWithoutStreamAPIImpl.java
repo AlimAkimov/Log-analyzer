@@ -25,7 +25,6 @@ public class WebLogAnalyzerWithoutStreamAPIImpl implements WebLogAnalyzer {
             Map.Entry<String, Long> entry = pageList.get(i);
             top5Pages.put(entry.getKey(), entry.getValue());
         }
-
         return top5Pages;
     }
 

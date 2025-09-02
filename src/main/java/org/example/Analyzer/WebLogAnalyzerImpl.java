@@ -24,7 +24,6 @@ public class WebLogAnalyzerImpl implements WebLogAnalyzer {
             Map.Entry<String, Long> entry = pageList.get(i);
             top5.put(entry.getKey(), entry.getValue());
         }
-
         return top5;
     }
 

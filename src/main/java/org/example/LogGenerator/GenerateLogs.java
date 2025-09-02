@@ -1,6 +1,8 @@
 package org.example.LogGenerator;
 
 import org.example.Model.VisitLog;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -8,6 +10,8 @@ import java.util.List;
 import java.util.Random;
 
 public class GenerateLogs {
+    private static final Logger logger = LoggerFactory.getLogger(GenerateLogs.class);
+
     public List<VisitLog> generateLogs(int count) {
         List<String> pages = List.of("/home", "/catalog", "/product/1", "/product/2", "/cart", "/checkout");
         Random random = new Random();
@@ -19,6 +23,7 @@ public class GenerateLogs {
             int duration = random.nextInt(300); // до 5 минут
             logs.add(new VisitLog(userId, page, time, duration));
         }
+        logger.info("Завершена генерация {} записей VisitLog", logs.size());
         return logs;
     }
 }
